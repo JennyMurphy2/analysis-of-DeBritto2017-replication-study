@@ -1,1 +1,1 @@
-# analysis-of-DeBritto2017-replication-study
+This repository is part of a large replication project conducted by the Sports Science Replication Centre (https://ssreplicationcentre.com/). It includes the data and analyses for the replication study of "Effect Of A Compressive Garment On Kinematics Of Jump-Landing Tasks" by De Britto et al (2017).
