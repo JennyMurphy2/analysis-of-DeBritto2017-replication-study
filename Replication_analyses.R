@@ -129,7 +129,7 @@ original_ttest
 orig_dz <- d.dep.t.diff.t(t = original_ttest$statistic, n = orig_desc$count[1], a = 0.05)
 orig_dz
 
-# Note - the calculated effect size is slightly different to the original (d = 0.58) so will compute using Cohen's dav
+# Note - the calculated effect size is slightly different to the original (d = 0.58) so will check using Cohen's dav
 
 orig_dav <- d.dep.t.avg(m1 = orig_desc$mean[1], m2 = orig_desc$mean[2], 
             sd1 = orig_desc$sd[1], sd2 = orig_desc$sd[2],
@@ -138,19 +138,19 @@ orig_dav
 
 # This calculation matches the original to the decimal place
 
-# Replication analyses - z-test --------
+# Replication analyses - z-test with reported effect size --------
 
 rep_test <- compare_smd(
+  smd1 = orig_dav$d,
+  n1 = orig_desc$count[1],
   smd2 = rep_dz$d,
   n2 = rep_desc$count[1],
-  smd1 = orig_dz$d,
-  n1 = orig_desc$count[1],
   paired = TRUE,
   alternative = "greater")
 rep_test
 
 
-# CMJ Z-test --------
+# Bootstrapped CMJ Z-test --------
 boot_test = boot_compare_smd(x1 = orig_data$differences,
                                  x2 = rep_data$differences,
                                  paired = TRUE, 
