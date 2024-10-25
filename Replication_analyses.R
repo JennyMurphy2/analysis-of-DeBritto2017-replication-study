@@ -61,9 +61,12 @@ rep_data_long$condition <- as.factor(rep_data_long$condition)
 
 rep_data_long$condition <- forcats::fct_relevel(rep_data_long$condition, "noncompressive", "compressive")
 
-replication_ttest <- t.test(valgus_angle ~ condition, rep_data_long, 
-                            alternative = "two.sided", paired = TRUE, conf.level = 0.95) %>%
-  tidy()
+#replication_ttest <- t.test(valgus_angle ~ condition, rep_data_long, 
+#                            alternative = "two.sided", paired = TRUE, conf.level = 0.95) %>%
+#  tidy()
+#replication_ttest
+
+replication_ttest <- t.test(rep_data$noncompressive, rep_data$compressive, paired = TRUE)
 replication_ttest
 
 ### Replication effect size calculation ------
@@ -127,9 +130,12 @@ orig_data %>% shapiro_test(differences)
 
 ## Paired t-test  -----------------------------
 
-original_ttest <- t.test(valgus_angle ~ condition, orig_data_long, 
-                         alternative = "two.sided", paired = TRUE, conf.level = 0.95) %>%
-  tidy()
+#original_ttest <- t.test(valgus_angle ~ condition, orig_data_long, 
+#                        alternative = "two.sided", paired = TRUE, conf.level = 0.95) %>%
+#  tidy()
+#original_ttest
+
+original_ttest <- t.test(orig_data$noncompressive, orig_data$compressive, paired = TRUE)
 original_ttest
 
 ### Original effect size calculation ------
@@ -163,7 +169,7 @@ rep_test
 rep_test <- compare_smd(
   smd1 = abs(orig_dav$d),
   n1 = orig_desc$count[1],
-  smd2 = -rep_dz$d,
+  smd2 = -rep_dav$d,
   n2 = rep_desc$count[1],
   paired = TRUE,
   alternative = "greater")
